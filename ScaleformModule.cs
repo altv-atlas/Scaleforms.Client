@@ -16,7 +16,7 @@ public static class ScaleformModule
     {
         Console.WriteLine( "[ATLAS] Scaleform Module Registered!" );
         serviceCollection.AddSingleton<AtlasScaleformEvents>( );
-        serviceCollection.AddSingleton<PlayerDrawIndustrialMenuScaleform>( );
+        serviceCollection.AddSingleton<PlayerDrawIndustrialMenuScaleformEvent>( );
         
         return serviceCollection;
     }
@@ -29,7 +29,7 @@ public static class ScaleformModule
     public static IServiceProvider InitializeScaleformModule( this IServiceProvider serviceProvider )
     {
         Console.WriteLine( "[ATLAS] Scaleform Module Initialized!" );
-        _ = serviceProvider.GetService<PlayerDrawIndustrialMenuScaleform>( );
+        _ = serviceProvider.GetService<PlayerDrawIndustrialMenuScaleformEvent>( );
         return serviceProvider;
     }
 }

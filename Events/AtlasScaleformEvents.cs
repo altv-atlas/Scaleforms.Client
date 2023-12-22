@@ -1,8 +1,9 @@
 ﻿using AltV.Atlas.Scaleforms.Shared.Models;
+using AltV.Net.Client.Elements.Interfaces;
 namespace AltV.Atlas.Scaleforms.Client.Events;
 
 /// <summary>
-/// Class that receives and emits events that occur within scaleform module
+/// Class that receives and emits events that occur within the scaleform module
 /// </summary>
 public class AtlasScaleformEvents
 {
@@ -11,7 +12,7 @@ public class AtlasScaleformEvents
     /// <summary>
     /// Delegate
     /// </summary>
-    public delegate void PlayerDrawIndustrialMenuScaleformDelegate( List<IndustrialButton> industrialButtons );
+    public delegate void PlayerDrawIndustrialMenuScaleformDelegate( IPlayer player, List<IndustrialButton> industrialButtons );
 
     /// <summary>
     /// Triggers when an industrial menu was drawn
@@ -21,10 +22,11 @@ public class AtlasScaleformEvents
     /// <summary>
     /// Event that triggers when an industrial menu was drawn
     /// </summary>
+    /// <param name="player">The player who received the menu</param>
     /// <param name="industrialButtons">The buttons to draw</param>
-    public void PlayerDrawIndustrialMenuScaleform( List<IndustrialButton> industrialButtons )
+    public void PlayerDrawIndustrialMenuScaleform( IPlayer player, List<IndustrialButton> industrialButtons )
     {
-        OnPlayerDrawIndustrialMenuScaleform?.Invoke( industrialButtons );
+        OnPlayerDrawIndustrialMenuScaleform?.Invoke( player, industrialButtons );
     }
 
     #endregion
@@ -34,7 +36,7 @@ public class AtlasScaleformEvents
     /// <summary>
     /// Delegate
     /// </summary>
-    public delegate void PlayerHideIndustrialMenuScaleformDelegate( );
+    public delegate void PlayerHideIndustrialMenuScaleformDelegate( IPlayer player );
 
     /// <summary>
     /// Triggers when an industrial menu was hidden
@@ -44,9 +46,10 @@ public class AtlasScaleformEvents
     /// <summary>
     /// Event that triggers when an industrial menu was hidden
     /// </summary>
-    public void PlayerHideIndustrialMenuScaleform( )
+    /// <param name="player">The player the menu was hidden for</param>
+    public void PlayerHideIndustrialMenuScaleform( IPlayer player )
     {
-        OnPlayerHideIndustrialMenuScaleform?.Invoke( );
+        OnPlayerHideIndustrialMenuScaleform?.Invoke( player );
     }
 
     #endregion

@@ -3,14 +3,16 @@ using AltV.Atlas.Scaleforms.Shared;
 using AltV.Atlas.Scaleforms.Shared.Models;
 using AltV.Atlas.Shared.Extensions;
 using AltV.Net.Client;
+using AltV.Net.Client.Elements.Interfaces;
 namespace AltV.Atlas.Scaleforms.Client.Events;
 
-public class PlayerDrawIndustrialMenuScaleform
+public class PlayerDrawIndustrialMenuScaleformEvent
 {
     private readonly AtlasScaleformEvents _atlasScaleformEvents;
     private uint _everyTick;
+    private readonly IPlayer _player = Alt.LocalPlayer;
 
-    public PlayerDrawIndustrialMenuScaleform( AtlasScaleformEvents atlasScaleformEvents )
+    public PlayerDrawIndustrialMenuScaleformEvent( AtlasScaleformEvents atlasScaleformEvents )
     {
         _atlasScaleformEvents = atlasScaleformEvents;
         Alt.OnServer<string>( ScaleformConstants.DrawIndustrialMenuEventName, DrawIndustrialMenuScaleform );
@@ -25,12 +27,12 @@ public class PlayerDrawIndustrialMenuScaleform
             return;
 
         _everyTick = AtlasScaleform.DrawIndustrialMenuEveryTick( industrialButtons! );
-        _atlasScaleformEvents.PlayerDrawIndustrialMenuScaleform( industrialButtons! );
+        _atlasScaleformEvents.PlayerDrawIndustrialMenuScaleform( _player, industrialButtons! );
     }
 
     private void HideIndustrialMenuScaleform( )
     {
         Alt.ClearEveryTick( _everyTick );
-        _atlasScaleformEvents.PlayerHideIndustrialMenuScaleform( );
+        _atlasScaleformEvents.PlayerHideIndustrialMenuScaleform( _player );
     }
 }
