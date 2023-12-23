@@ -6,12 +6,19 @@ using AltV.Net.Client;
 using AltV.Net.Client.Elements.Interfaces;
 namespace AltV.Atlas.Scaleforms.Client.Events;
 
+/// <summary>
+/// Listens to the custom events DrawIndustrialMenu and HideIndustrialMenu
+/// </summary>
 public class PlayerDrawIndustrialMenuScaleformEvent
 {
     private readonly AtlasScaleformEvents _atlasScaleformEvents;
     private uint _everyTick;
     private readonly IPlayer _player = Alt.LocalPlayer;
 
+    /// <summary>
+    /// Creates new instance of this class
+    /// </summary>
+    /// <param name="atlasScaleformEvents"></param>
     public PlayerDrawIndustrialMenuScaleformEvent( AtlasScaleformEvents atlasScaleformEvents )
     {
         _atlasScaleformEvents = atlasScaleformEvents;
